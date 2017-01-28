@@ -1,0 +1,40 @@
+﻿@model Role
+
+@{
+    ViewBag.Title = "Add Role";
+    string[] permissions = { "Authors", "Books", "Categories", "Publishers", "Requests", "Issues", "Roles" };
+}
+
+<div style="width:700px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <b>Add Role</b>
+        </div>
+        <div class="panel-body">
+            <form asp-action="create" method="post" asp-antiforgery="true">
+                <div class="form-group">
+                    <label for="name" class="control-label">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Permissions</label>
+                    <br />
+
+                    @foreach (var permission in permissions)
+                    {
+                        <input type="checkbox" value="@permission" name="permissions" />@permission
+                        <br />
+                    }
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-success" />
+                    @Html.ActionLink("Cancel", "Index", new { }, new { @class = "btn btn-warning" })
+                </div>
+
+        </div>
+
+        </form>
+    </div>
+</div>

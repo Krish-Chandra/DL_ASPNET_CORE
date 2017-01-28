@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@model IEnumerable<IdentityRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+@*@Html.ActionLink("Add Role", "Create", new { }, new { @class = "btn btn-success" })*@
+<a asp-action="Create" class="btn btn-success">Add Role</a>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Roles
+    </div>
+
+
+    <div class="panel-body">
+        @if (Model.Count() > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-edit" })*@
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="glyphicon glyphicon-edit"></a>
+                            @*@Html.ActionLink("", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-remove" })*@
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="glyphicon glyphicon-remove"></a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                No roles defined in the system!
+            </div>
+
+        }
+    </div>
+</div>

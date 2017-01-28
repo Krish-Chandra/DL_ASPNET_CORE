@@ -1,0 +1,83 @@
+@model Book
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal col-md-6">
+        <h4>Book</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AuthorId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+              @*  <input asp-for="Author" class="form-control" />*@
+                <select asp-for="AuthorId" asp-items="@ViewBag.Authors"></select> 
+                <span asp-validation-for="AuthorId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoryId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="CategoryId" asp-items="@ViewBag.Categories"></select>
+                <span asp-validation-for="CategoryId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PublisherId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="PublisherId" asp-items="@ViewBag.Publishers"></select>
+                <span asp-validation-for="PublisherId" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ISBN" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ISBN" class="form-control" />
+                <span asp-validation-for="ISBN" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TotalCopies" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TotalCopies" class="form-control" />
+                <span asp-validation-for="TotalCopies" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="AvailableCopies" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="AvailableCopies" class="form-control" />
+                <span asp-validation-for="AvailableCopies" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

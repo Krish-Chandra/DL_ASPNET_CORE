@@ -1,0 +1,60 @@
+@model IEnumerable<Book>
+
+<div class="container">
+    @if (ViewBag.Msg != null)
+    {
+        <div class="alert alert-success">
+            <span>@ViewBag.Msg</span>
+        </div>
+    }
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Books Catalog
+        </div>
+
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Publisher</th>
+                    <th>ISBN</th>
+                    <th>Total Copies</th>
+                    <th>Available Copies</th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.Title)</td>
+                        <td>@Html.DisplayFor(model => item.Author.Name)</td>
+                        <th>@Html.DisplayFor(model => item.Category.Name)</th>
+                        <th>@Html.DisplayFor(model => item.Publisher.Name)</th>
+                        <th>@Html.DisplayFor(model => item.ISBN)</th>
+                        <th>@Html.DisplayFor(model => item.TotalCopies)</th>
+                        <th>@Html.DisplayFor(model => item.AvailableCopies)</th>
+                        <td>
+                            @using (Html.BeginForm("AddToCart", "Library", new { Id = item.BookId }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-link" title="Add the book to the request cart">
+                                    <i aria-hidden='true' class='glyphicon glyphicon-plus'></i>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div style="text-align: center">
+        <a asp-action="DisplayViewCart">
+            <i aria-hidden="true" class="glyphicon glyphicon-shopping-cart" title="View your request cart"></i>
+        </a>
+    </div>
+
+</div>

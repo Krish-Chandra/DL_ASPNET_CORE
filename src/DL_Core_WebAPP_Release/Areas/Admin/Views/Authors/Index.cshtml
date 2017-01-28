@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DL_Core_WebAPP_Release.Models.Author>
+
+@{
+    ViewBag.Title = "Authors";
+}
+
+<div>
+    @Html.ActionLink("Add Author", "Create", new { }, new { @class = "btn btn-success" })
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Authors List
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PinCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PinCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.ActionLink("", "Edit", new { id = item.AuthorID }, new { @class = "glyphicon glyphicon-edit" })
+                        @Html.ActionLink("", "Delete", new { id = item.AuthorID }, new { @class = "glyphicon glyphicon-remove" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

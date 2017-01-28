@@ -1,0 +1,73 @@
+@model IEnumerable<Book>
+
+<div class="container">
+    @if (ViewBag.Msg != null)
+    {
+        <div class="alert alert-success">
+            <span>@ViewBag.Msg</span>
+        </div>
+    }
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Your Request Cart
+        </div>
+
+        <div class="panel-body">
+            @if ((Model == null) || (Model.Count() < 1))
+            {
+                <span>Your Request cart is empty!</span>
+            }
+            else
+            {
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Publisher</th>
+                        <th>ISBN</th>
+                        <th>Total Copies</th>
+                        <th>Available Copies</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Author.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Publisher.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ISBN)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalCopies)</td>
+                            <td>@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
+                            <td>
+                                <form asp-action="RemoveFromCart" asp-route-id="@item.BookId" method="post">
+                                    <button type="submit" class="btn btn-link">
+                                        <i aria-hidden='true' class='glyphicon glyphicon-minus'></i>
+                                    </button>
+
+                                </form>
+                            </td>
+                        </tr>
+
+                    }
+                    <tr>
+                        <td colspan="8">
+                            <form asp-action="Checkout" method="post">
+                                <div style="text-align:center">
+                                    <button type="submit" class="btn btn-link" stye="align:center">
+                                        <i aria-hidden='true' class='glyphicon glyphicon-arrow-right'></i>
+                                    </button>
+
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+
+                </table>
+            }
+
+        </div>
+    </div>
+</div>

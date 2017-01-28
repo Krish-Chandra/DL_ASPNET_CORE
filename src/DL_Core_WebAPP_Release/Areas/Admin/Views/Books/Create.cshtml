@@ -1,0 +1,118 @@
+﻿@model DL_Core_WebAPP_Release.Models.Book
+
+@{
+    ViewBag.Title = "Add Book";
+}
+
+
+@*<div style="width:700px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <b>Add Book</b>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AuthorId, "AuthorId", htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("AuthorId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AuthorId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PublisherId, "publisherId", htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("PublisherId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PublisherId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TotalCopies, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.TotalCopies, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TotalCopies, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Add" class="btn btn-success" />
+                        @Html.ActionLink("Cancel", "Index", new { }, new { @class="btn btn-warning" })
+                    </div>
+            }
+        </div>
+    </div>
+</div>*@
+
+<div style="width:700px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <b>Add Book</b>
+        </div>
+        <div class="panel-body">
+            <form asp-controller="books" asp-action="create" method="post" asp-antiforgery="true">
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input type="text" asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AuthorId" class="control-label"></label>
+                    <select class="form-control" asp-for="AuthorId" asp-items="ViewBag.Authors"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PublisherId" class="control-label"></label>
+                    <select class="form-control" asp-for="PublisherId" asp-items="ViewBag.Publishers"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Categories"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ISBN" class="control-label"></label>
+                    <input type="text" asp-for="ISBN" class="form-control" />
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TotalCopies" class="control-label"></label>
+                    <input asp-for="TotalCopies" class="form-control" />
+                    <span asp-validation-for="TotalCopies" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-success" />
+                    <a asp-action="Index" class = "btn btn-warning" >Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

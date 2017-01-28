@@ -1,0 +1,131 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using DL_Core_WebAPP_Release.Models;
+
+namespace DL_Core_WebAPP_Release.Migrations
+{
+    [DbContext(typeof(DLContext))]
+    [Migration("20160629070602_Add_DL_Entities")]
+    partial class Add_DL_Entities
+    {
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DL_Core_WebAPP_Release.Models.Author", b =>
+                {
+                    b.Property<int>("AuthorID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("PinCode");
+
+                    b.Property<string>("State");
+
+                    b.HasKey("AuthorID");
+
+                    b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("DL_Core_WebAPP_Release.Models.Book", b =>
+                {
+                    b.Property<int>("BookId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AuthorId");
+
+                    b.Property<int>("AvailableCopies");
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<string>("ISBN");
+
+                    b.Property<int>("PublisherId");
+
+                    b.Property<string>("Title");
+
+                    b.Property<int>("TotalCopies");
+
+                    b.HasKey("BookId");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("PublisherId");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("DL_Core_WebAPP_Release.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("DL_Core_WebAPP_Release.Models.Publisher", b =>
+                {
+                    b.Property<int>("PublisherID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("PinCode");
+
+                    b.Property<string>("State");
+
+                    b.HasKey("PublisherID");
+
+                    b.ToTable("Publishers");
+                });
+
+            modelBuilder.Entity("DL_Core_WebAPP_Release.Models.Book", b =>
+                {
+                    b.HasOne("DL_Core_WebAPP_Release.Models.Author", "Author")
+                        .WithMany("Books")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DL_Core_WebAPP_Release.Models.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DL_Core_WebAPP_Release.Models.Publisher", "Publisher")
+                        .WithMany("Books")
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+        }
+    }
+}
