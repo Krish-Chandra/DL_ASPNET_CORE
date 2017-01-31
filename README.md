@@ -1,6 +1,6 @@
 
 #About Digital Library:
-	An online book store app that has two modules: Admin (back end) and Library(front end).
+	An online book store app that has two parts: Admin (back end) and Library(front end).
 	
 ##Admin Area:
 	Is where the book store is administered
