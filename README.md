@@ -2,10 +2,10 @@
 #About Digital Library:
 	An online book store app that has two modules: Admin (back end) and Library(front end).
 	
-##Admin Module:
+##Admin Area:
 	Is where the book store is administered
 
-###Admin Module Features:
+###Admin Area Features:
 
 - Add/update/delete Books, Authors, Publishers, Categories, Admin Users, Admin Roles
 - View requests for books
@@ -15,7 +15,6 @@
 
 - Add/update/delete books
 	- Currently, a book can have only one author, category, and publisher
-	- Before adding a book, atleast one author, category, and publisher need to be added to the system
 			
 ####Authors, Publishers and Categories:
 
@@ -47,7 +46,6 @@
 ####Members:
 
 - Are the public users of the system
-- Activate/deactivate/delete members
 
 ####Roles:
 
@@ -55,17 +53,17 @@
 - The system comes with the following roles:
 	- Admin
 		- Omnipotent
-		- The 'administrator' user belongs to this role
-			- Add/delete other admin users and assign roles to them						
+		- admin@example.com user belongs to this role
 	- Librarian
 		- Less powerful than admin
 		- Has restricted access to the backend
+		- librarian@example.com user belongs to this role
     
   - Member
     - Public users of the system
 
 
-**Library Module:**
+**Front end:**
 
 	Is the frontend of the application that will be used by members
 
