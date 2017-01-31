@@ -16,16 +16,17 @@
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Title</th>
-                    <th>Issued On</th>
                     <th>Issued To</th>
-                    <th>Returned?</th>
+                    <th>Issued On</th>
+                    <th>Due On</th>
+                    <th></th>
                 </tr>
 
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>@item.Book.Title</td>
-                        <td>@item.IssuedOn</td>
+
                         <td>
                             @*@Html.DisplayFor(modelItem => item.User.UserName)*@
                             @*@Html.DisplayFor(modelItem => item.UserId)*@
@@ -34,6 +35,8 @@
                              }
                             @ViewHelper.GetString(userName)
                         </td>
+                        <td>@item.IssuedOn</td>
+                        <td>@item.DueOn</td>
                         <td>
                             <form asp-action="ReturnBook" asp-route-id="@item.IssueID" method="post">
                                 <button type="submit" class="btn btn-link" title="Has the book been returned?">

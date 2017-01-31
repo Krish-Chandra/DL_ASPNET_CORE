@@ -29,11 +29,12 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td>
-                            @*@Html.ActionLink("", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-edit" })*@
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="glyphicon glyphicon-edit"></a>
-                            @*@Html.ActionLink("", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-remove" })*@
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="glyphicon glyphicon-remove"></a>
+                        @*We don't want to edit/remove the Administrator role (omnipotent role)
+                        To remove the edit/remove functionality in this case, we'll use a tag helper to clear out the contents of the <td>*@
+                        
+                        <td role-name="@item.Name" user-name=""> 
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="glyphicon glyphicon-edit" title="Edit the role"></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="glyphicon glyphicon-remove" title="Delete the role"></a>
                         </td>
                     </tr>
                 }

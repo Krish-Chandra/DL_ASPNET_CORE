@@ -63,8 +63,11 @@
                         @Html.DisplayFor(modelItem => item.Phone)
                     </td>
                     <td>
-                        @Html.ActionLink("", "Edit", new { id = item.AuthorID }, new { @class = "glyphicon glyphicon-edit" })
-                        @Html.ActionLink("", "Delete", new { id = item.AuthorID }, new { @class = "glyphicon glyphicon-remove" })
+                        @*@Html.ActionLink("", "Edit", new { id = item.AuthorID }, new { @class = "glyphicon glyphicon-edit" })
+                        @Html.ActionLink("", "Delete", new { id = item.AuthorID }, new { @class = "glyphicon glyphicon-remove" })*@
+                        <a asp-action="Edit" asp-route-id="@item.AuthorID" class="glyphicon glyphicon-edit" title="Edit the author"></a>
+                        <a asp-action="Delete" asp-route-id="@item.AuthorID" class="glyphicon glyphicon-remove" title="Delete the author"></a>
+
                     </td>
                 </tr>
             }

@@ -43,22 +43,23 @@ namespace DL_Core_WebAPP_Release.Areas.Admin.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserName", "Password", "Role")]AdminUserCreateViewModel model)
+        public async Task<IActionResult> Create(AdminUserCreateViewModel userToCreate)
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser {UserName = model.UserName, Email = model.UserName };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var user = new IdentityUser {UserName = userToCreate.UserName, Email = userToCreate.UserName };
+                var result = await _userManager.CreateAsync(user, userToCreate.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, model.Role);
+                    await _userManager.AddToRoleAsync(user, userToCreate.Role);
                     return RedirectToAction("Index");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            ViewBag.Roles = _roleManager.Roles.Select(r => new SelectListItem { Value = r.Name, Text = r.Name });
+            return View(userToCreate);
         }
 
         public async Task<IActionResult> Edit(string id)
@@ -69,7 +70,9 @@ namespace DL_Core_WebAPP_Release.Areas.Admin.Controllers
                 return NotFound();
             else
             {
-                AdminUserViewModel adminVM = new AdminUserViewModel(user.UserName) { Id=user.Id, Role = (await _userManager.GetRolesAsync(user))[0] };
+                var roles = await _userManager.GetRolesAsync(user);
+                string role = roles.Count > 0 ? roles[0] : "";
+                AdminUserViewModel adminVM = new AdminUserViewModel(user.UserName) { Id=user.Id, Role = role};
                 return View(adminVM);
             }
         }

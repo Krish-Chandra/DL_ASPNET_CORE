@@ -11,16 +11,16 @@ namespace DL_Core_WebAPP_Release.Models
         }
         public int PublisherID { get; set; }
 
-        [Required(ErrorMessage = "Please enter the publisher's name")]
+        [Required(ErrorMessage = "Please enter the name of the publisher")]
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string PinCode { get; set; }
-        [Required(ErrorMessage = "Please enter the publisher's email ID")]
+        [Required(ErrorMessage = "Please enter the email ID of the publisher")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please enter the publisher's phone")]
+        [Required(ErrorMessage = "Please enter the phone of the publisher")]
         public string Phone { get; set; }
 
 

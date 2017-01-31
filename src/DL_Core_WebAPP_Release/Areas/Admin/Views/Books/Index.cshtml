@@ -80,10 +80,10 @@
                     </td>
                     <td>
                         @*@Html.ActionLink("", "Edit", new { id = item.BookId }, new { @class = "glyphicon glyphicon-edit" })*@
-                        <a asp-action="Edit" asp-route-id="@item.BookId" class="glyphicon glyphicon-edit"></a>
+                        <a asp-action="Edit" asp-route-id="@item.BookId" class="glyphicon glyphicon-edit" title="Edit the book"></a>
 
                         @*@Html.ActionLink("", "Delete", new { id = item.BookId }, new { @class = "glyphicon glyphicon-remove" })*@
-                        <a asp-action="Delete" asp-route-id="@item.BookId" class="glyphicon glyphicon-remove"></a>
+                        <a asp-action="Delete" asp-route-id="@item.BookId" class="glyphicon glyphicon-remove" title="Delete the book"></a>
 
                         @*@Html.ActionLink("Edit", "Edit", new { id = item.BookId }, new { @class = "btn btn-link" }) |
                             @Html.ActionLink("Details", "Details", new { id = item.BookId }) |

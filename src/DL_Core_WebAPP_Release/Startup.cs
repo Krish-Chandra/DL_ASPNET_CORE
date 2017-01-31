@@ -27,8 +27,6 @@ namespace DL_Core_WebAPP_Release
             var connection = @"Server=(localdb)\mssqllocaldb;Database=DL.AspNetCore.10;Trusted_Connection=True;";
             services.AddDbContext<DLContext>(options => options.UseSqlServer(connection));
 
-            services.AddTransient<LibraryRepository>();
-
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.Cookies.ApplicationCookie.LoginPath = "/Account/Login";

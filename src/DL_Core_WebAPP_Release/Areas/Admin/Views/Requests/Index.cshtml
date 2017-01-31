@@ -16,6 +16,9 @@
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Title</th>
+                    <th>Author</th>
+                    <th>Total Copies</th>
+                    <th>Available Copies</th>
                     <th>Requested By</th>
                     <th>Requesed On</th>
                     <th></th>
@@ -25,6 +28,9 @@
                 {
                     <tr>
                         <td>@item.Book.Title</td>
+                        <td>@item.Book.Author.Name</td>
+                        <td>@item.Book.TotalCopies</td>
+                        <td>@item.Book.AvailableCopies</td>
                         <td>
                             @*@Html.Action("GetUserNameFromId", new { Id = item.UserId })*@
                             @*@Html.DisplayFor(modelItem => item.UserId)*@

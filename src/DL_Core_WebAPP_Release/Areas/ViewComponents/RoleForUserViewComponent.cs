@@ -21,7 +21,7 @@ namespace DL_Core_WebAPP_Release.Areas.ViewComponents
         public async Task<string> InvokeAsync(IdentityUser user)
         {
             var roles = await _userManager.GetRolesAsync(user);
-            if (roles != null)
+            if (roles?.Count > 0)
                 return roles[0];
             else
                 return string.Empty;

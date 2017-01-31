@@ -8,27 +8,27 @@ using DL_Core_WebAPP_Release.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DL_Using_DotNet_Core.Controllers
 {
 
     public class LibraryController : Controller
     {
-        private LibraryRepository _repo;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly DLContext _DLContext;
 
 
-        public LibraryController(LibraryRepository repo, UserManager<IdentityUser> userManager, DLContext dlContext)
+        public LibraryController(UserManager<IdentityUser> userManager, DLContext dlContext)
         {
-            _repo = repo;
             _userManager = userManager;
             _DLContext = dlContext;
         }
 
         public IActionResult Index()
         {
-            return View(_repo.GetAll());
+            return View(_DLContext.Books.Include(b => b.Author).Include(b => b.Category).Include(b => b.Publisher).ToList());
         }
 
         [HttpPost]
@@ -61,7 +61,7 @@ namespace DL_Using_DotNet_Core.Controllers
                 reqBooks = new List<Book>();
                 foreach (int id in bookIds)
                 {
-                    reqBooks.Add(_repo.Get(id));
+                    reqBooks.Add(_DLContext.Books.Include(b => b.Author).Include(b => b.Category).Include(b => b.Publisher).First(book => book.BookId == id));
                 }
 
             }

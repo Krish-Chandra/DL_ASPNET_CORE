@@ -28,9 +28,9 @@ namespace DL_Core_WebAPP_Release.Migrations
                     context.Categories.Add(cat1);
                     context.Categories.Add(cat2);
 
-                    Publisher pub1 = new Publisher { Name = "Microsoft Press" };
-                    Publisher pub2 = new Publisher { Name = "APress" };
-                    Publisher pub3 = new Publisher { Name = "Packt Publisher" };
+                    Publisher pub1 = new Publisher { Name = "Microsoft Press", Address="1 Washington Blvd", City="Houston", State="TX", Email="mspress@example.com", Phone="123-123-1234", PinCode="123456" };
+                    Publisher pub2 = new Publisher { Name = "APress", Address = "1 Washington Blvd", City = "Houston", State = "TX", Email = "mspress@example.com", Phone = "123-123-1234", PinCode = "123456" };
+                    Publisher pub3 = new Publisher { Name = "Packt Publisher", Address = "1 Washington Blvd", City = "Houston", State = "TX", Email = "mspress@example.com", Phone = "123-123-1234", PinCode = "123456" };
                     context.Publishers.Add(pub1);
                     context.Publishers.Add(pub2);
                     context.Publishers.Add(pub3);
@@ -72,7 +72,7 @@ namespace DL_Core_WebAPP_Release.Migrations
                 {
                     #region Claim
                     await _roleManager.AddClaimAsync(adminIdentityRole, new Claim("AdminUsers", "Allowed"));
-                    await _roleManager.AddClaimAsync(adminIdentityRole, new Claim("Members", "Allowed"));
+                    //await _roleManager.AddClaimAsync(adminIdentityRole, new Claim("Members", "Allowed"));
                     await _roleManager.AddClaimAsync(adminIdentityRole, new Claim("Authors", "Allowed"));
                     await _roleManager.AddClaimAsync(adminIdentityRole, new Claim("Books", "Allowed"));
                     await _roleManager.AddClaimAsync(adminIdentityRole, new Claim("Categories", "Allowed"));

@@ -10,14 +10,12 @@
             <b>Add Admin User</b>
         </div>
         <div class="panel-body">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form method="post" asp-antiforgery="true">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Password" class="control-label"></label>
@@ -33,13 +31,17 @@
                 <div class="form-group">
                     <label class="control-label">Role</label>
                     <br />
-                    <select asp-for="Role" asp-items="ViewBag.Roles"></select>
+                    <select asp-for="Role" asp-items="ViewBag.Roles" class="form-control">
+                        <option value="">Select a Role</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Add" class="btn btn-success" />
-                    @Html.ActionLink("Cancel", "Index", new { }, new { @class = "btn btn-warning" })
+                    <a asp-action="Index" class="btn btn-warning">Cancel</a>
                 </div>
-            }
+
+            </form>
         </div>
     </div>
 </div>

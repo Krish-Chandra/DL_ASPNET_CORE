@@ -34,8 +34,10 @@
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
-                        @Html.ActionLink("", "Edit", new { id = item.CategoryID }, new { @class = "glyphicon glyphicon-edit" })
-                        @Html.ActionLink("", "Delete", new { id = item.CategoryID }, new { @class = "glyphicon glyphicon-remove" })
+                        @*@Html.ActionLink("", "Edit", new { id = item.CategoryID }, new { @class = "glyphicon glyphicon-edit" })
+                        @Html.ActionLink("", "Delete", new { id = item.CategoryID }, new { @class = "glyphicon glyphicon-remove" })*@
+                        <a asp-action="Edit" asp-route-id="@item.CategoryID" class="glyphicon glyphicon-edit" title="Edit the category"></a>
+                        <a asp-action="Delete" asp-route-id="@item.CategoryID" class="glyphicon glyphicon-remove" title="Delete the category"></a>
 
                         @*@Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
                             @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |

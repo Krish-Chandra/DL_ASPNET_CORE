@@ -26,7 +26,7 @@ namespace DL_Core_WebAPP_Release.Areas.Admin.Controllers
         // GET: Admin/Requests
         public async Task<ActionResult> Index()
         {
-            var requests = db.Requests.Include(r => r.Book);
+            var requests = db.Requests.Include(r => r.Book).Include(r => r.Book.Author);
             return View(await requests.ToListAsync());
         }
 

@@ -1,11 +1,11 @@
 @model DL_Core_WebAPP_Release.Models.LoginViewModel
 
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Page = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
+<h2>@ViewBag.Page</h2>
+<div style="width:700px;">
     <div class="col-md-8">
         <section id="loginForm">
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" class="form-horizontal" role="form">
@@ -39,12 +39,12 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
+                @*<p>
                     <a asp-action="Register">Register as a new user?</a>
                 </p>
                 <p>
                     <a asp-action="ForgotPassword">Forgot your password?</a>
-                </p>
+                </p>*@
             </form>
         </section>
     </div>

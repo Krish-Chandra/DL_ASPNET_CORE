@@ -1,6 +1,9 @@
 @model IEnumerable<Book>
+@{
+    ViewBag.Page = "View Cart";
+}
 
-<div class="container">
+<div>
     @if (ViewBag.Msg != null)
     {
         <div class="alert alert-success">
@@ -43,7 +46,7 @@
                             <td>@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
                             <td>
                                 <form asp-action="RemoveFromCart" asp-route-id="@item.BookId" method="post">
-                                    <button type="submit" class="btn btn-link">
+                                    <button type="submit" class="btn btn-link" title="Remove the book from your request cart">
                                         <i aria-hidden='true' class='glyphicon glyphicon-minus'></i>
                                     </button>
 
@@ -56,7 +59,7 @@
                         <td colspan="8">
                             <form asp-action="Checkout" method="post">
                                 <div style="text-align:center">
-                                    <button type="submit" class="btn btn-link" stye="align:center">
+                                    <button type="submit" class="btn btn-link" stye="align:center" title="Send a request to the admin">
                                         <i aria-hidden='true' class='glyphicon glyphicon-arrow-right'></i>
                                     </button>
 

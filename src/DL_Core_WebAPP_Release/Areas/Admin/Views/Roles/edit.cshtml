@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
-@model IdentityRole
+﻿@model Role
 
 @{
     ViewBag.Title = "Edit Role";
@@ -12,7 +11,31 @@
             <b>Edit Role</b>
         </div>
         <div class="panel-body">
-            @using (Html.BeginForm())
+            <form method="post" asp-antiforgery="true">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Permissions</label>
+                    <br />
+                    @foreach (var claim in claims)
+                    {
+                        <input type="checkbox" value="@claim" @(Array.IndexOf(ViewBag.roleClaims, claim) >= 0 ? "checked" : "") name="claims" />@claim
+                        <br />
+                    }
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-warning">Cancel</a>
+                </div>
+
+            </form>
+
+            @*@using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Id)
@@ -37,7 +60,7 @@
                     <input type="submit" value="Update" class="btn btn-success" />
                     @Html.ActionLink("Cancel", "Index", new { }, new { @class = "btn btn-warning" })
                 </div>
-            }
+            }*@
         </div>
     </div>
 </div>

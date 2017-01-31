@@ -9,8 +9,9 @@ namespace DL_Core_WebAPP_Release.Models
 {
     public class Role
     {
+        public string Id { get; set; }
         [Required(ErrorMessage="Please enter the name of the role")]
         public string Name { get; set; }
-        public string[] Permissions { get; set; }
+        public string[] Claims { get; set; }
     }
 }
